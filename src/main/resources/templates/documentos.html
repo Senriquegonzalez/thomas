@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Documentos</title>
+    <meta charset="UTF-8">
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Listado de Documentos</h1>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a th:href="@{/agregarDocumento}" class="btn btn-success">Agregar Documento</a></li>
+            <li class="list-inline-item"><a th:href="@{/}" class="btn btn-secondary">Inicio</a></li>
+        </ul>
+        <div th:if="${not #lists.isEmpty(documentos)}">
+            <table class="table table-dark table-bordered">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Carpeta</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="documento : ${documentos}">
+                        <td th:text="${documento.idDocumento}">ID Documento</td>
+                        <td th:text="${documento.codigo}">Código</td>
+                        <td th:text="${documento.carpeta.codigo}">Carpeta</td>
+                        <td><a th:href="@{/editarDocumento/{idDocumento}(idDocumento=${documento.idDocumento})}" class="btn btn-warning">Editar</a></td>
+                        <td><a th:href="@{/eliminarDocumento/{idDocumento}(idDocumento=${documento.idDocumento})}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${#lists.isEmpty(documentos)}">
+            <p class="alert alert-info">La lista de documentos está vacía</p>
+        </div>
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

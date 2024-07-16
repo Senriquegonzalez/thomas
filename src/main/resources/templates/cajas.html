@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Cajas</title>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for dark theme -->
+    <style>
+        body {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+        .nav-link {
+            color: #f8f9fa;
+        }
+        .nav-link:hover {
+            color: #adb5bd;
+        }
+        h1 {
+            color: #f8f9fa;
+        }
+        .table {
+            color: #f8f9fa;
+        }
+        .table th, .table td {
+            border-color: #495057;
+        }
+        .table th {
+            background-color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Listado de Cajas</h1>
+        <ul class="nav flex-column mb-4">
+            <li class="nav-item"><a class="nav-link" th:href="@{/agregarCaja}">Agregar Caja</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/}">Inicio</a></li>
+        </ul>
+        <div th:if="${not #lists.isEmpty(cajas)}">
+            <table class="table table-dark table-bordered">
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="caja : ${cajas}">
+                    <td th:text="${caja.idCaja}">ID Caja</td>
+                    <td th:text="${caja.codigo}">Código</td>
+                    <td><a class="btn btn-sm btn-primary" th:href="@{/editarCaja/{idCaja}(idCaja=${caja.idCaja})}">Editar</a></td>
+                    <td><a class="btn btn-sm btn-danger" th:href="@{/eliminarCaja/{idCaja}(idCaja=${caja.idCaja})}">Eliminar</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${#lists.isEmpty(cajas)}">
+            La lista de cajas está vacía
+        </div>
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

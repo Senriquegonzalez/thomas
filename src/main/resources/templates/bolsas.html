@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Bolsas</title>
+    <meta charset="UTF-8">   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+    <style>
+        body {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+        .nav-link {
+            color: #f8f9fa;
+        }
+        .nav-link:hover {
+            color: #adb5bd;
+        }
+        h1 {
+            color: #f8f9fa;
+        }
+        table {
+            background-color: #495057;
+            color: #f8f9fa;
+        }
+        th, td {
+            border-color: #dee2e6;
+        }
+        a {
+            color: #007bff;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Listado de Bolsas</h1>
+    <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" th:href="@{/agregarBolsa}">Agregar Bolsa</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/}">Inicio</a></li>
+    </ul>
+    <div th:if="${not #lists.isEmpty(bolsas)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Caja</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bolsa : ${bolsas}">
+                <td th:text="${bolsa.codigo}">Código</td>
+                <td th:text="${bolsa.caja.codigo}">Caja</td>
+                <td><a class="btn btn-primary" th:href="@{/editarBolsa/{idBolsa}(idBolsa=${bolsa.idBolsa})}">Editar</a></td>
+                <td><a class="btn btn-danger" th:href="@{/eliminarBolsa/{idBolsa}(idBolsa=${bolsa.idBolsa})}">Eliminar</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${#lists.isEmpty(bolsas)}">
+        <p class="alert alert-warning">La lista de bolsas está vacía.</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

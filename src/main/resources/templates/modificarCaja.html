@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modificar Caja</title>
+    <meta charset="UTF-8">
+ 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <style>
+        body {
+            background-color: #343a40;
+            color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            color: #f8f9fa;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #495057;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Modificar Caja</h1>
+        
+        <form action="#" th:action="@{/guardarCaja}" th:object="${caja}" method="post">
+            <input type="hidden" th:field="*{idCaja}" />
+            
+            <div class="form-group">
+                <label for="codigo">Código:</label>
+                <input type="text" id="codigo" th:field="*{codigo}" class="form-control" />
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    
+        <br/>
+        <a href="/" class="btn btn-secondary">Volver al listado</a>
+    </div>
+    
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
